@@ -12,7 +12,6 @@ const restricted = (req, res, next) => {
         next({ status: 401, message: "token invalid"});
       } else {
         req.decodedJwt = decoded;
-        console.log(decoded);
         next();
       }
     })
@@ -32,7 +31,6 @@ const only = role_name => (req, res, next) => {
 
 const checkUsernameExists = async (req, res, next) => {
   const { username } = req.body;
-  console.log(username);
   
   try {
     const user = await User.findBy({ username });
